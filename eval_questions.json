@@ -1,0 +1,17 @@
+[
+  {
+    "question": "What is retrieval-augmented generation?",
+    "expected_source": "sample_rag_intro.txt",
+    "expected_keywords": ["retrieval", "generation", "context", "external"]
+  },
+  {
+    "question": "Why does chunking use overlap between chunks?",
+    "expected_source": "sample_rag_intro.txt",
+    "expected_keywords": ["overlap", "boundary", "context"]
+  },
+  {
+    "question": "What is a vector database used for in RAG?",
+    "expected_source": "sample_rag_intro.txt",
+    "expected_keywords": ["embedding", "similarity", "vector"]
+  }
+]

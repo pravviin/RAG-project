@@ -1,0 +1,31 @@
+Retrieval-augmented generation, or RAG, is a technique that combines a
+retrieval step with a generation step. Instead of relying only on what a
+language model memorized during training, RAG looks up relevant external
+context at query time and passes it to the model, grounding the answer in
+real, up-to-date information rather than the model's internal parameters
+alone.
+
+A typical RAG pipeline has three stages. First, documents are split into
+smaller chunks, because language models can only read a limited amount of
+context at once and because smaller chunks let the retriever find more
+precise matches. Chunking usually uses some overlap between consecutive
+chunks so that a fact sitting near a chunk boundary is not cut in half and
+lost to retrieval.
+
+Second, each chunk is converted into a numerical vector using an embedding
+model. Similar pieces of text end up close together in this vector space.
+These vectors are stored in a vector database, which is optimized for fast
+similarity search — given a query vector, it can quickly find the stored
+chunks whose vectors are closest to it.
+
+Third, at query time, the user's question is embedded the same way, the
+vector database returns the most similar chunks, and those chunks are
+inserted into a prompt alongside the original question. The language model
+then generates an answer using that retrieved context, which reduces
+hallucination and lets the system answer questions about information it
+was never trained on, such as private documents or very recent events.
+
+RAG systems are typically evaluated on two axes: retrieval quality (did the
+system fetch the right chunks?) and generation quality (did the model use
+those chunks correctly and avoid making things up?). Good RAG projects
+measure both, rather than just eyeballing a few example answers.
